@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -45,7 +46,7 @@ namespace IUAdmin.Controllers
         }
 
         [HttpPost]
-        public JsonResult GuardarCategorias(BE.Categoria oCategoria)
+        public JsonResult GuardarCategoria(BE.Categoria oCategoria)
         {
 
             object resultado;
@@ -69,6 +70,53 @@ namespace IUAdmin.Controllers
             string mensaje = string.Empty;
 
             respuesta = new BLL.CategoriaService().Desactivar(id, out mensaje);
+
+            return Json(new { resultado = respuesta, mensaje = mensaje }, JsonRequestBehavior.AllowGet);
+        }
+
+        // ----------------------------------------------------------------------------------------------------------------------------//
+
+        [HttpGet]
+        public JsonResult ListarMarcas()
+        {
+            List<BE.Marca> oLista = new List<BE.Marca>();
+            oLista = new BLL.MarcaService().Listar();
+
+            var marcasFormateadas = oLista.Select(e => new
+            {
+                e.IdMarca,
+                e.Descripcion,
+                e.Activo
+            });
+
+            return Json(new { data = marcasFormateadas }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GuardarMarca(BE.Marca oMarca)
+        {
+
+            object resultado;
+            string mensaje = string.Empty;
+
+            if (oMarca.IdMarca == 0)
+            {
+                resultado = new BLL.MarcaService().Crear(oMarca, out mensaje);
+            }
+            else
+            {
+                resultado = new BLL.MarcaService().Editar(oMarca, out mensaje);
+            }
+            return Json(new { resultado = resultado, mensaje = mensaje }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult DesactivarMarca(int id)
+        {
+            bool respuesta = false;
+            string mensaje = string.Empty;
+
+            respuesta = new BLL.MarcaService().Desactivar(id, out mensaje);
 
             return Json(new { resultado = respuesta, mensaje = mensaje }, JsonRequestBehavior.AllowGet);
         }

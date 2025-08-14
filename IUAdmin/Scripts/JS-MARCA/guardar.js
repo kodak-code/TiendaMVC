@@ -1,19 +1,19 @@
 ﻿
-	const btnGuardarCategoria = document.getElementById("guardarCategoria");
+	const btnGuardarMarca = document.getElementById("guardarMarca");
 
-	if (btnGuardarCategoria) {
+	if (btnGuardarMarca) {
 
-		btnGuardarCategoria.addEventListener("click", guardar);
+		btnGuardarMarca.addEventListener("click", guardar);
 	}
 
 	async function guardar() {
 
-		var Categoria = {
-			IdCategoria: $("#id").val(),
+		var Marca = {
+			IdMarca: $("#id").val(),
 			Descripcion: $("#descripcion").val(),
 			Activo: $("#activo").val() == 1 ? true : false
 		};
-		console.log(Categoria);
+		console.log(Marca);
 		try {
 
 			$(".modal-body").LoadingOverlay("show", {
@@ -22,25 +22,25 @@
 				size: 14
 			});
 
-			const response = await fetch("/Mantenedor/GuardarCategoria", {
+			const response = await fetch("/Mantenedor/GuardarMarca", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json; charset=utf-8"
 				},
-				body: JSON.stringify(Categoria)
+				body: JSON.stringify(Marca)
 			});
 
 			const data = await response.json();
 
-			if (Categoria.IdCategoria == 0) {
+			if (Marca.IdMarca == 0) {
 
-				// CREAR CATEGORIA 
+				// CREAR MARCA 
 				if (data.resultado != 0) {
-					Categoria.IdCategoria = data.resultado;
-					tabledata.row.add(Categoria).draw(false);
+					Marca.IdMarca = data.resultado;
+					tabledata.row.add(Marca).draw(false);
 
 					$("#FormModal").modal("hide");
-					swal("¡Categoria Creada Exitosamente!", "Presiona OK para continuar", "success");
+					swal("¡Marca Creada Exitosamente!", "Presiona OK para continuar", "success");
 				} else {
 					$("#msjError").text(data.mensaje);
 					$("#msjError").show();
@@ -48,13 +48,13 @@
 
 			}
 			else {
-				// EDITAR CATEGORIA
+				// EDITAR MARCA
 				if (data.resultado) {
-					tabledata.row(filaSeleccionada).data(Categoria).draw(false);
+					tabledata.row(filaSeleccionada).data(Marca).draw(false);
 					filaSeleccionada = null;
 
 					$("#FormModal").modal("hide");
-					swal("¡Categoria Editada Exitosamente!", "Presiona OK para continuar", "success");
+					swal("¡Marca Editada Exitosamente!", "Presiona OK para continuar", "success");
 				} else {
 					$("#msjError").text(data.mensaje);
 					$("#msjError").show();

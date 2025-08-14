@@ -23,7 +23,6 @@ namespace DAL
                 unaCategoria.IdCategoria = Convert.ToInt32(fila["IdCategoria"]);
                 unaCategoria.Descripcion = fila["Descripcion"].ToString();
                 unaCategoria.Activo = Convert.ToBoolean(fila["Activo"]);
-                unaCategoria.FechaRegistro = Convert.ToDateTime(fila["FechaRegistro"]);
 
                 categorias.Add(unaCategoria);
             }

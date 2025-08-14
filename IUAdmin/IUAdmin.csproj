@@ -456,6 +456,12 @@
     <Content Include="Scripts\JS-CATEGORIA\eliminar.js" />
     <Content Include="Scripts\JS-CATEGORIA\guardar.js" />
     <Content Include="Scripts\JS-CATEGORIA\modal.js" />
+    <Content Include="Scripts\JS-MARCA\base.js" />
+    <Content Include="Scripts\JS-MARCA\datatable.js" />
+    <Content Include="Scripts\JS-MARCA\editar.js" />
+    <Content Include="Scripts\JS-MARCA\eliminar.js" />
+    <Content Include="Scripts\JS-MARCA\guardar.js" />
+    <Content Include="Scripts\JS-MARCA\modal.js" />
     <Content Include="Scripts\JS-USUARIO\base.js" />
     <Content Include="Scripts\JS-USUARIO\datatable.js" />
     <Content Include="Scripts\JS-USUARIO\editar.js" />

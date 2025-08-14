@@ -23,7 +23,7 @@ namespace BLL
             mensaje = string.Empty;
 
             if (string.IsNullOrWhiteSpace(categoria.Descripcion))
-                mensaje = "El Categoria debe tener un Descripcion";
+                mensaje = "La Categoria debe tener un Descripcion";
 
             if (string.IsNullOrEmpty(mensaje))
             {

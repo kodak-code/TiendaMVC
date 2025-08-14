@@ -34,13 +34,5 @@ namespace BE
             set { _activo = value; }
         }
 
-        private DateTime _fechaRegistro;
-
-        public DateTime FechaRegistro
-        {
-            get { return _fechaRegistro; }
-            set { _fechaRegistro = value; }
-        }
-
     }
 }
