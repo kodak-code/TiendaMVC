@@ -22,7 +22,6 @@ namespace IUAdmin.Controllers
 
         // Metodos
 
-        // ----------------------------------------------------------------------------------------------------------------------------//
         [HttpGet]
         public JsonResult ListarUsuarios()
         {

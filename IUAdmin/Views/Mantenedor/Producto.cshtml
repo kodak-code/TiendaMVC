@@ -4,5 +4,153 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Producto</h2>
+<ol class="breadcrumb mb-4 mt-2">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Resumen</a></li>
+    <li class="breadcrumb-item active">Productos</li>
+</ol>
 
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-boxes me-1"></i> Lista de Productos
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <button type="button" id="crearNuevo" class="btn btn-success">Crear Nuevo</button>
+            </div>
+        </div>
+
+        <hr />
+
+        <table id="tabla" class="display cell-border" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Marca</th>
+                    <th>Categoria</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Activo</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @*AJAX, JQUERY*@
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-black text-white">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Producto</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                    @* Ocultar id para que solo se maneje con ajax *@
+                    <input type="hidden" id="id" value="0" />
+
+                    <form id="contenedorProducto" class="row">
+
+                        <div class="col-sm-3">
+                            <div class="mb-2">
+                                <img id="imgProducto" height="197" width="200" class="border rounded mx-auto d-block img-fluid" />
+                            </div>
+                            <div class="mb-2">
+                                <input class="form-control" type="file" id="fileProducto" accept="image/png, image/jpeg, image/jpg"  />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label fw-bold">Nombre</label>
+                                <input name="nombre" type="text" class="form-control" id="nombre" autocomplete="off" />
+                                <span class="text-danger" id="error-nombre"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label fw-bold">Descripcion</label>
+                                <textarea name="descripcion" type="text" class="form-control" id="descripcion" 
+                                          style="height:125px;resize:none"></textarea>
+                                <span class="text-danger" id="error-descripcion"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="mb-3">
+                                <label for="marca" class="form-label fw-bold">Marca</label>
+                                <select id="marca" name="marca" class="form-select">
+                                    <option value="" selected disabled>Elija una opcion</option>
+                                </select>
+                                <span class="text-danger" id="error-marca"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="categoria" class="form-label fw-bold">Categoria</label>
+                                <select id="categoria" name="categoria" class="form-select">
+                                    <option value="" selected disabled>Elija una opcion</option>
+                                </select>
+                                <span class="text-danger" id="error-categoria"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="precio" class="form-label fw-bold">Precio</label>
+                                <input type="text" name="precio" class="form-control" id="precio" autocomplete="off">
+                                <span class="text-danger" id="error-precio"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="mb-3">
+                                <label for="stock" class="form-label fw-bold">Stock</label>
+                                <input type="text" name="stock" class="form-control" id="stock" autocomplete="off">
+                                <span class="text-danger" id="error-stock"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="activo" class="form-label fw-bold">Activo</label>
+                                <select id="activo" name="Activo" class="form-select">
+                                    <option selected disabled>Elija una opcion</option>
+                                    <option value="1">Si</option>
+                                    <option value="2">No</option>
+                                </select><span class="text-danger" id="error-activo"></span>
+                                <span class="text-danger" id="error-activo"></span>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div id="msjError" class="alert alert-danger" role="alert">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="btnCerrar" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button id="guardarProducto" type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+
+        // variables globales para todos los archivos
+        var tabledata;
+        var filaSeleccionada;
+        const urlListarProductos = '@Url.Action("ListarProductos", "Mantenedor")';
+
+    </script>
+
+    @* Script base que contiene todos los archivos JS de usuario *@
+    <script src="~/Scripts/JS-PRODUCTO/base.js"></script>
+}

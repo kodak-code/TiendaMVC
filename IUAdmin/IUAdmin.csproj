@@ -462,6 +462,15 @@
     <Content Include="Scripts\JS-MARCA\eliminar.js" />
     <Content Include="Scripts\JS-MARCA\guardar.js" />
     <Content Include="Scripts\JS-MARCA\modal.js" />
+    <Content Include="Scripts\JS-PRODUCTO\base.js" />
+    <Content Include="Scripts\JS-PRODUCTO\datatable.js" />
+    <Content Include="Scripts\JS-PRODUCTO\editar.js" />
+    <Content Include="Scripts\JS-PRODUCTO\eliminar.js" />
+    <Content Include="Scripts\JS-PRODUCTO\guardar.js" />
+    <Content Include="Scripts\JS-PRODUCTO\imagen.js" />
+    <Content Include="Scripts\JS-PRODUCTO\marcasYcategorias.js" />
+    <Content Include="Scripts\JS-PRODUCTO\modal.js" />
+    <Content Include="Scripts\JS-PRODUCTO\validaciones.js" />
     <Content Include="Scripts\JS-USUARIO\base.js" />
     <Content Include="Scripts\JS-USUARIO\datatable.js" />
     <Content Include="Scripts\JS-USUARIO\editar.js" />

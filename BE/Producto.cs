@@ -50,6 +50,14 @@ namespace BE
             set { _precio = value; }
         }
 
+        private string _precioTexto;
+
+        public string PrecioTexto
+        {
+            get { return _precioTexto; }
+            set { _precioTexto = value; }
+        }
+
         private int _stock;
         public int Stock
         {
@@ -76,6 +84,22 @@ namespace BE
         {
             get { return _activo; }
             set { _activo = value; }
+        }
+
+        private string _base64;
+
+        public string Base64
+        {
+            get { return _base64; }
+            set { _base64 = value; }
+        }
+
+        private string _extension;
+
+        public string Extension
+        {
+            get { return _extension; }
+            set { _extension = value; }
         }
 
     }

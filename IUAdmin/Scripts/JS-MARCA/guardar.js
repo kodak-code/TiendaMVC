@@ -33,7 +33,7 @@
 			const data = await response.json();
 
 			if (Marca.IdMarca == 0) {
-
+				console.log(data);
 				// CREAR MARCA 
 				if (data.resultado != 0) {
 					Marca.IdMarca = data.resultado;
@@ -42,6 +42,7 @@
 					$("#FormModal").modal("hide");
 					swal("¡Marca Creada Exitosamente!", "Presiona OK para continuar", "success");
 				} else {
+					alert("ERROR")
 					$("#msjError").text(data.mensaje);
 					$("#msjError").show();
 				}
