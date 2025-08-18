@@ -64,9 +64,10 @@
             $("#id").val(json.IdProducto);
             $("#nombre").val(json.Nombre);
             $("#descripcion").val(json.Descripcion);
-            $("#marca").val(json.Marca.Descripcion);
-            $("#categoria").val(json.Categoria.Descripcion);
+            $("#marca").val(json.Marca.IdMarca);
+            $("#categoria").val(json.Categoria.IdCategoria);
             $("#precio").val(json.Precio);
+            $("#stock").val(json.Stock);
             $("#activo").val(json.Activo == true ? 1 : 2);
 
             await imagenProducto(json.IdProducto);

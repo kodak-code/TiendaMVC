@@ -1,9 +1,8 @@
 ﻿
-	jQuery.validator.addMethod("preciodecimal", function (value, element) {
+    jQuery.validator.addMethod("preciodecimal", function (value, element) {
+        return this.optional(element) || /^\d+(\.\d{1,2})?$/.test(value);
+    }, "El formato correcto del precio es ##.##");
 
-		return this.optional(element) || /^\d{0,4}(\.\d{0,2})?$/i.test(value);
-
-	}, "El formato correcto del precio es ##.##");
 
     $("#contenedorProducto").validate({
         rules: {
