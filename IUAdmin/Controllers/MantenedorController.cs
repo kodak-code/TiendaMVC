@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace IUAdmin.Controllers
 {
+    [Authorize]
     public class MantenedorController : Controller
     {
         // GET: Mantenedor

@@ -131,5 +131,60 @@ namespace DAL
 
             return resultado;
         }
+
+        public bool CambiarClave(int idUsuario, string nuevaClave, out string mensaje)
+        {
+            Conexion conexion = new Conexion();
+
+            bool resultado = false;
+            mensaje = string.Empty;
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@IdUsuario", idUsuario),
+                new SqlParameter("@Clave", nuevaClave)
+            };
+
+            int filasAfectadas = conexion.EscribirPorStoreProcedure("sp_cambiar_clave", parametros);
+
+            if (filasAfectadas > 0)
+            {
+                return resultado = true;
+            } else
+            {
+                mensaje = "No se pudo cambiar la clave";
+            }
+
+            return resultado;
+        }
+
+        public bool ReestablecerClave(int idUsuario, string clave, out string mensaje)
+        {
+            Conexion conexion = new Conexion();
+
+            bool resultado = false;
+            mensaje = string.Empty;
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@IdUsuario", idUsuario),
+                new SqlParameter("@Clave", clave)
+            };
+
+            int filasAfectadas = conexion.EscribirPorStoreProcedure("sp_reestablecer_clave", parametros);
+
+            if (filasAfectadas > 0)
+            {
+                return resultado = true;
+            } else
+            {
+                mensaje = "No se pudo reestablecer la clave";
+            }
+
+            return resultado;
+        }
+
+
+
     }
 }

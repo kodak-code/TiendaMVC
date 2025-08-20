@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -89,5 +91,42 @@ namespace BLL
         {
             return usuarioDAL.Desactivar(IdUsuario, out mensaje);
         }
+
+        public bool CambiarClave(int idUsuario, string nuevaClave, out string mensaje)
+        {
+            return usuarioDAL.CambiarClave(idUsuario, nuevaClave, out mensaje);
+        }
+
+        public bool ReestablecerClave(int idUsuario, string correo, out string mensaje)
+        {
+            mensaje = string.Empty;
+            string nuevaClave = Recursos.GenerarClave();
+            bool resultado = usuarioDAL.ReestablecerClave(idUsuario, Recursos.ConvertirSha256(nuevaClave), out mensaje);
+
+            if (resultado)
+            {
+                string asunto = "Contraseña Reestablecida";
+                string mensajeCorreo = "<h3>Su cuenta fue reestablecida correctamente</h3></br><p>Su contraseña para acceder ahora es: !clave!</p>";
+                mensajeCorreo = mensajeCorreo.Replace("!clave!", nuevaClave);
+
+                bool respuesta = Recursos.EnviarCorreo(correo, asunto, mensajeCorreo);
+
+                if (respuesta)
+                {
+                    return true;
+                } else
+                {
+                    mensaje = "No se pudo enviar el correo";
+                    return false;
+                }
+            }
+            else
+            {
+                mensaje = "No se pudo reestablecer la contraseña";
+                return false;
+            }
+            
+        }
+
     }
 }
